@@ -1,0 +1,42 @@
+/*
+Given an array of strings, find the strings inside the array which are appearing even numbers. 
+If a string appears odd numbers, don't include it in the output.
+Strings should remain same order as input array. Don't change input array.
+*/ 
+ 
+ public String[] GetStrings(String[] input){
+        HashMap <String, int> map = new HashMap<string,int>();
+        String[] output;
+        while (input.Length > 0)
+        {
+            output = new String[input.Length];
+            foreach (String s in input)
+            {
+                if (!map.Contains(s))
+                {
+                    map.put(s, 1);
+                }
+                else
+                {
+                    map.get(s).value++;
+                }
+            }
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (map.item[i].value % 2 == 0)
+                {
+                    output[i] = map.item[i].key;
+                }
+            }
+        
+        }
+
+        if (input.Length == 0)
+        {
+            output = null;
+        }
+
+        return output;
+
+    }
