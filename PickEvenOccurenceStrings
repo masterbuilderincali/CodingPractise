@@ -4,39 +4,76 @@ If a string appears odd numbers, don't include it in the output.
 Strings should remain same order as input array. Don't change input array.
 */ 
  
- public String[] GetStrings(String[] input){
-        HashMap <String, int> map = new HashMap<string,int>();
-        String[] output;
-        while (input.Length > 0)
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace FindEvenOccurenceStrings
+{
+    class Program
+    {
+        static void Main(string[] args)
         {
-            output = new String[input.Length];
-            foreach (String s in input)
+            Console.WriteLine("Please input strings.");
+            String line = Console.ReadLine();
+            String[] input;
+            String[] separators = { ",", ".", "!", "?", ";", ":", " " };
+            input = line.Split(separators, StringSplitOptions.None);
+            String[] output = GetStrings(input);
+            foreach (string s in output)
             {
-                if (!map.Contains(s))
+                if (s != "")
                 {
-                    map.put(s, 1);
-                }
-                else
-                {
-                    map.get(s).value++;
+                    System.Console.WriteLine(s);
                 }
             }
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (map.item[i].value % 2 == 0)
-                {
-                    output[i] = map.item[i].key;
-                }
-            }
-        
         }
 
-        if (input.Length == 0)
+        public static String[] GetStrings(String[] input)
         {
-            output = null;
+            Dictionary<String, int> map = new Dictionary<string, int>();
+            String[] output = new String[]{};
+            if (input.Length == 0)
+            {
+                output = null;
+            }
+            while (input.Length > 0)
+            {
+                output = new String[input.Length];
+                foreach (String s in input)
+                {
+                    if (!map.ContainsKey(s))
+                    {
+                        map.Add(s, 1);
+                    }
+                    else
+                    {
+                        map[s]+=1;
+                    }
+                }
+                int i = 0;
+                while (i < input.Length)
+                {
+                    foreach (String s in map.Keys)
+                    {
+                        if (map[s] % 2 == 0)
+                        {
+                            output[i] = s;
+                            i++;
+                        }
+                    }
+                    break;
+
+                }
+                break;
+            }
+
+            return output;
+
         }
-
-        return output;
-
     }
+}
